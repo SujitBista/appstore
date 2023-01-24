@@ -1,49 +1,47 @@
 import React,{ useState } from "react";
-import ReactDOM from "react-dom";
 import {useNavigate} from "react-router-dom";
-import App from '../App';
 import "../css/styles.css";
-import { ReactSession }  from 'react-client-session';
 
-function Login() {
+const database = [
+  {
+    username: "user1",
+    password: "pass1"
+  },
+  {
+    username: "user2",
+    password: "pass2"
+  }
+];
+
+const errors = {
+  uname: "invalid username",
+  pass: "invalid password"
+};
+
+
+function Login({ setIsAuthenticated }) {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
 
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-
+    console.log('handleSubmit')
     var { uname, pass } = document.forms[0];
 
     // Find user login info
     const userData = database.find((user) => user.username === uname.value);
-
+    console.log(userData)
     // Compare user info
     if (userData) {
       if (userData.password !== pass.value) {
         // Invalid password
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
-        setIsSubmitted(true);
+        setIsAuthenticated(true);
+        navigate('/admin')
       }
     } else {
       // Username not found
@@ -83,14 +81,7 @@ function Login() {
       <div className="login-form">
         <div className="title">Sign In</div>
         {
-           isSubmitted ? ()=> {
-            //I want to set a variable with value of true and sent it to
-            //app component where I could check the condition to block the route based on true and false value
-            // If loggedin then store boolean value inside a session variable
-            // and then use it to login
-            navigate('/admin')
-           } 
-           : renderForm
+           renderForm
         }
       </div>
     </div>
