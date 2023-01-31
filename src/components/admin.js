@@ -1,22 +1,24 @@
 import React, {useState} from 'react';
 import "../css/admin/admin.css";
 export function Admin({isAuthenticated}) {
-    const [toggle, setToggle] = useState(true);
+    const [mode, setMode] = useState('open');
     if(!isAuthenticated) {
         return;
     }
+    const handleDrawer = () => {
+      setMode(mode == 'open' ? 'close': 'open');
+    }
+
     return (
       <>
         <header>
             <span className="inner-text">Header</span>
         </header>
-        <button onClick={()=>setToggle(!toggle)}>--</button>
+        <button onClick={handleDrawer}>--</button>
         <div className="wrapper">
-            {toggle && 
-            (<aside className={"sidebar"}>
+            <aside className={"sidebar" + mode}>
                <span className="inner-text">inner text</span>
-            </aside>)
-            }
+            </aside>
             <main className="content">
                 <div className="inner-text">
                     main contents

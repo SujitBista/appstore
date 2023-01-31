@@ -12,12 +12,18 @@ header {
     0%   { opacity: 0; }
     100% { opacity: 1; }
 }
-.sidebar {
-    min-width: 300px;
+
+.sidebaropen {
+    width: 300px;
     background: rgb(41, 40, 38);
     display: flex;
-    transition: all 2s ease-in-out 3s; 
+    transition: width 0.2s ease-out; 
 }
+ .sidebarclose {
+    background: rgb(41, 40, 38);
+    transition: width 0.2s ease-in; 
+    width: 50px;
+  }
 .inner-text {
     margin: auto;
     font-size: 24px;
