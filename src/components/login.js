@@ -29,6 +29,7 @@ function Login({ setIsAuthenticated }) {
     //Prevent page reload
     event.preventDefault();
     console.log('handleSubmit')
+    console.log(document.forms[0]);
     var { uname, pass } = document.forms[0];
 
     // Find user login info

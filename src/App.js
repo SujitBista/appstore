@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import {useLocation,BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Login from "./components/login";
-import { Admin } from "./components/admin";
+import {Admin} from "./components/admin";
 
 function App() {
  const [isAuthenticated, setIsAuthenticated] = useState(false)
